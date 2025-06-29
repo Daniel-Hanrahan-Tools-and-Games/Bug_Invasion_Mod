@@ -1,0 +1,146 @@
+[gd_scene load_steps=18 format=3 uid="uid://ctn4gid34se85"]
+
+[ext_resource type="Texture2D" uid="uid://nh8ilqm7k42f" path="res://Bug_Invasion_Mod/Artwork/ModRoom.png" id="1_6wlib"]
+[ext_resource type="PackedScene" uid="uid://bdygtak84imav" path="res://Player.tscn" id="2_yxh8u"]
+[ext_resource type="Script" path="res://WallCollision.cs" id="3_v2q10"]
+[ext_resource type="Script" path="res://RightEdgeCollision.cs" id="4_sdhw4"]
+[ext_resource type="PackedScene" uid="uid://st6xihk35464" path="res://RedEnemy.tscn" id="5_enxtn"]
+[ext_resource type="Script" path="res://EnemyMovement.cs" id="5_ud6f7"]
+[ext_resource type="PackedScene" uid="uid://dblprjsqxovg" path="res://YellowEnemy.tscn" id="6_yrr2s"]
+[ext_resource type="PackedScene" uid="uid://k7etuy3cbcpk" path="res://GreenEnemy.tscn" id="7_8e28d"]
+[ext_resource type="PackedScene" uid="uid://chfl0tfkirpsm" path="res://BlueEnemy.tscn" id="8_8r3au"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lvg4"]
+size = Vector2(95, 654)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gduq"]
+size = Vector2(1137, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8g4he"]
+size = Vector2(1139, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1ktx"]
+size = Vector2(49, 640)
+
+[sub_resource type="Curve2D" id="Curve2D_m5k8x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 636, 172, 0, 0, 0, 0, 640, 404)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_fpitu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 738, 186, 0, 0, 0, 0, 750, 366)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_2ep4x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 810, 206, 0, 0, 0, 0, 812, 398)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_jm75u"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 894, 184, 0, 0, 0, 0, 888, 372)
+}
+point_count = 2
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_6wlib")
+expand_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Player" parent="." instance=ExtResource("2_yxh8u")]
+position = Vector2(46, 335)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-42, 316)
+shape = SubResource("RectangleShape2D_7lvg4")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(27, 534)
+script = ExtResource("3_v2q10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(554.5, 45)
+shape = SubResource("RectangleShape2D_2gduq")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(42, 9)
+script = ExtResource("3_v2q10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(539.5, 54)
+shape = SubResource("RectangleShape2D_8g4he")
+
+[node name="Area2D3" type="Area2D" parent="."]
+position = Vector2(1163, 13)
+script = ExtResource("4_sdhw4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(18.5, 310)
+shape = SubResource("RectangleShape2D_s1ktx")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 4.0
+offset_right = 491.0
+offset_bottom = 161.0
+bbcode_enabled = true
+text = "[color=#000000]Bug_Invasion_Mod [/color]
+[color=#000000]Copyright (C) 2025 Daniel Hanrahan Tools and Games[/color]
+[color=#000000]This only applies to  the stuff that is not in the base game:[/color]
+[color=#000000]This Expansion or Mod is under the BSD-3-Clause license and everything else in this[/color]
+[color=#000000]Expansion/Mod is under this: This work is licensed under CC BY 4.0[/color]"
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_m5k8x")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(636, 172)
+rotation = 1.55356
+script = ExtResource("5_ud6f7")
+
+[node name="RedEnemy" parent="Path2D/PathFollow2D" instance=ExtResource("5_enxtn")]
+
+[node name="Path2D2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_fpitu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2(738, 186)
+rotation = 1.50423
+script = ExtResource("5_ud6f7")
+
+[node name="YellowEnemy" parent="Path2D2/PathFollow2D" instance=ExtResource("6_yrr2s")]
+
+[node name="Path2D3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2ep4x")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
+position = Vector2(810, 206)
+rotation = 1.56038
+script = ExtResource("5_ud6f7")
+
+[node name="GreenEnemy" parent="Path2D3/PathFollow2D" instance=ExtResource("7_8e28d")]
+
+[node name="Path2D4" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jm75u")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D4"]
+position = Vector2(894, 184)
+rotation = 1.6027
+script = ExtResource("5_ud6f7")
+
+[node name="BlueEnemy" parent="Path2D4/PathFollow2D" instance=ExtResource("8_8r3au")]
+
+[connection signal="area_entered" from="Area2D" to="Player" method="Collision"]
+[connection signal="area_entered" from="Area2D2" to="Player" method="Collision"]
+[connection signal="area_entered" from="Area2D3" to="Player" method="Collision"]
