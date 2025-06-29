@@ -1,2 +1,8 @@
 # Bug_Invasion_Mod
-This is Just an example mod for Bug_Invasion
+<p>This is only meant to be an example mod</p>
+
+<h3>Both of these links have the mod support information needed</h3>
+
+<a href="https://github.com/Daniel-Hanrahan-Tools-and-Games/Bug_Invasion">Bug_Invasion Repository Page</a>
+
+<a href="https://daniel-hanrahan-tools-and-games.github.io/Bug_Invasion">Bug_Invasion ReadMe Page</a>
